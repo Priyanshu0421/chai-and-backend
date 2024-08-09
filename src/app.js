@@ -19,4 +19,6 @@ app.use(express.urlencoded({               // this is for like in url there are 
 
 app.use(express.static("public"))   // to store some assest like photos like in public so that any one can access
 
+app.use(cookieParser());
+
 export default app;
