@@ -21,4 +21,12 @@ app.use(express.static("public"))   // to store some assest like photos like in 
 
 app.use(cookieParser());
 
+
+
+//  import router 
+ import userRouter from './routes/user.routes.js';
+
+// routes declaration
+app.use("/api/v1/user" , userRouter)  // in this whenever we will access the api/v1/user will be redirected to routes where we have already defined what we have to do
+
 export default app;
