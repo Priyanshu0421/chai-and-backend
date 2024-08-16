@@ -28,8 +28,8 @@ const registerUser = asyncHandler( async (req,res) => {
         throw new ApiError(400 , "All Fields Are required")
     }
 
-    const existedUser = User.findOne({                // this is used for finding data from the user as User is directly connected to our database
-        $or : [username , email]                      // $or -> for finding multiple things 
+    const existedUser = await User.findOne({                // this is used for finding data from the user as User is directly connected to our database
+        $or : [{username} , {email}]                      // $or -> for finding multiple things 
     })
 
     if(existedUser){
@@ -38,7 +38,11 @@ const registerUser = asyncHandler( async (req,res) => {
 
     //  check for the files u r going to upload
     const avatarLocalPath = req.files?.avatar[0]?.path;         // refrence for the files we are going to upload
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    let coverImageLocalPath;
+    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0){
+        coverImageLocalPath = req.files.coverImage[0].path;
+    }
 
     //  to check if avatar is uploaded or not
 
