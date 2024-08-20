@@ -238,7 +238,7 @@ const changeCurrentPassword = asyncHandler(async (req,res) => {
 const getCurrentUser = asyncHandler(async(req,res) => {   // isme directly hi return kr diya kyuki hmare auth middle ware k pass req.user h toh seedha wha se current user mil jaega
     return res
     .status(200)
-    .json(200 , req.user, "current user fetched Successfully")
+    .json(new ApiResponse(200 , req.user, "current user fetched Successfully"))
 })
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
